@@ -30,3 +30,7 @@ htmlcov/
 .DS_Store
 .idea/
 .vscode/
+
+
+# Test dir tree
+src/test
