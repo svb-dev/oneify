@@ -1,0 +1,2 @@
+1. main.py
+def traverse_dir_tree(root_dir: str)
