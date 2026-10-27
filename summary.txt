@@ -1,2 +1,17 @@
 1. main.py
 def traverse_dir_tree(root_dir: str)
+
+
+2. def get_size_dictionary(file_list: list):
+
+# returns a dictionary with keys being the file size
+# and the value being the list of file paths
+
+
+
+
+File get_size.py
+
+def get_size_dictionary(file_list: list) -> dict[int, list[str]]
+# returns a dictionary with keys being the file size
+# and the value being the list of file paths

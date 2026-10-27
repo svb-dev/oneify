@@ -4,7 +4,7 @@ import os
 # and the value being the list of file paths
 
 
-def get_size_dictionary(file_list: list):
+def get_size_dictionary(file_list: list) -> dict[int, list[str]]:
     file_size_dict = {}
     for file_full_path in file_list:
         file_size = os.path.getsize(file_full_path)
