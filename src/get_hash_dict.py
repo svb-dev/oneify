@@ -16,7 +16,10 @@ def get_1kb_hash_dictionary(file_list: list) -> dict[int, list[str]]:
     return one_kb_hash_dict
 
 
-def get_entire_file_hash_dictionary(file_list: list) -> dict[int, list[str]]:
+# returns a dictionary with keys being the sha256 hash of the
+# the entire file(s) and value(s) being the list of files' paths
+
+def get_entire_file_hash_dictionary(file_list: list) -> dict[str, list[str]]:
     entire_file_hash_dict = {}
     for file_full_path in file_list:
         entire_file_hash = hash_entire_file(file_full_path)
@@ -29,6 +32,6 @@ def get_entire_file_hash_dictionary(file_list: list) -> dict[int, list[str]]:
 file_list = ['test/test_3.txt', 'test/test_level1/text_2.txt',
              'test/text.txt', 'test/text_4.txt']
 
-pprint.pprint(get_1kb_hash_dictionary(file_list))
+# pprint.pprint(get_1kb_hash_dictionary(file_list))
 
-pprint.pprint(get_entire_file_hash_dictionary(file_list))
+# pprint.pprint(get_entire_file_hash_dictionary(file_list))
