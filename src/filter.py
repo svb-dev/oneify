@@ -1,4 +1,4 @@
-from get_hash_dict import *
+from get_hash_dict import get_1kb_hash_dictionary, get_entire_file_hash_dictionary
 from traverse_dir_tree import traverse_dir_tree
 from get_size import get_size_dictionary
 import os
@@ -18,33 +18,29 @@ def file_filter(root_dir: str) -> dict[str, list[str]]:
     # get the list of all files in the dir tree
     all_files_list = traverse_dir_tree(root_dir)
     file_size_dict = get_size_dictionary(all_files_list)
+    same_size_files_list = []
     for size in file_size_dict:
         if len(file_size_dict[size]) > 1:
-            same_size_files_list = file_size_dict[size]
+            same_size_files_list.extend(file_size_dict[size])
+    # print(same_size_files_list)
+    same_1kb_hash_dict = get_1kb_hash_dictionary(same_size_files_list)
 
-        same_1kb_hash_dict = get_1kb_hash_dictionary(same_size_files_list)
+    same_hash_list = []
+    same_hash_dict_1 = {}
+    for same_1kb_hash in same_1kb_hash_dict:
+        if len(same_1kb_hash_dict[same_1kb_hash]) > 1:
 
-        same_hash_dict = {}
-
-        for same_1kb_hash in same_1kb_hash_dict:
-            if len(same_1kb_hash_dict[same_1kb_hash]) > 1:
-                # i = len(same_1kb_hash_dict[same_1kb_hash]) - 1
-                # if os.path.getsize(same_1kb_hash_dict[same_1kb_hash][0]) <= 1024:
-                #    same_hash_dict[same_1kb_hash] = same_1kb_hash_dict[same_1kb_hash]
-                # else:
-                entire_file_hash_dict = get_entire_file_hash_dictionary(
-                    same_1kb_hash_dict[same_1kb_hash])
-                for entire_hash_key in entire_file_hash_dict:
-                    if len(entire_file_hash_dict[entire_hash_key]) > 1:
-                        same_hash_dict[entire_hash_key] = entire_file_hash_dict[entire_hash_key]
-
-                # same_hash = get_entire_file_hash_dictionary(
-                #    same_1kb_hash_dict[same_1kb_hash])
-    # return same_1kb_hash_dict, entire_hash_list
-    return entire_file_hash_dict
-# OCT 28 : why
+            if os.path.getsize(same_1kb_hash_dict[same_1kb_hash][0]) <= 1024:
+                same_hash_dict_1[same_1kb_hash] = same_1kb_hash_dict[same_1kb_hash]
+            else:
+                same_hash_list.extend(same_1kb_hash_dict[same_1kb_hash])
+    same_hash_dict_2 = get_entire_file_hash_dictionary(same_hash_list)
+    same_hash_dict_1.update(same_hash_dict_2)
+    return same_hash_dict_1
 
 
 root_dir = "test_2"
+
+file_filter(root_dir)
 
 pprint.pprint(file_filter(root_dir))

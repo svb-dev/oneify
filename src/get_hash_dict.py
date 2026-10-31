@@ -1,5 +1,6 @@
 import os
 from get_hash import hash_first_1kb, hash_entire_file
+from traverse_dir_tree import traverse_dir_tree
 import pprint
 
 # returns a dictionary with keys being the sha256 hash of the
@@ -29,9 +30,9 @@ def get_entire_file_hash_dictionary(file_list: list) -> dict[str, list[str]]:
     return entire_file_hash_dict
 
 
-file_list = ['test/test_3.txt', 'test/test_level1/text_2.txt',
-             'test/text.txt', 'test/text_4.txt']
+# file_list = traverse_dir_tree('test_2')
 
 # pprint.pprint(get_1kb_hash_dictionary(file_list))
 
+# pprint.pprint(file_list)
 # pprint.pprint(get_entire_file_hash_dictionary(file_list))
