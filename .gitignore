@@ -3,6 +3,11 @@
 venv/
 env/
 
+# Test dirs
+
+src/test/
+src/test_2/
+
 # Python bytecode and caches
 __pycache__/
 *.py[cod]
